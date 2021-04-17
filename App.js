@@ -1,13 +1,31 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import ItemList from "./src/ItemList";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  SafeAreaView,
+  ScrollView,
+} from "react-native";
+import ItemList from "./src/Components/ItemList";
+import ItemListAnime from "./src/Components/ItemListAnime";
+import PrimaryList from "./src/Components/PrimaryList";
+import topbanner from "./assets/topbanner.jpeg";
+import { Layout } from "./src/Constants/Layout";
+import { Colours } from "./src/Constants/Colours";
+import ItemListLongCards from "./src/Components/ItemListLongCards";
+import MenuList from "./src/Screens/MenuList";
+import DATA from "./src/DATA";
+import HomeNavigator from "./src/HomeNavigator";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <ItemList direction="horizontal" />
-      <StatusBar style="auto" />
+      <SafeAreaView>
+        <HomeNavigator />
+      </SafeAreaView>
     </View>
   );
 }
@@ -18,5 +36,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    marginTop: 20,
   },
 });

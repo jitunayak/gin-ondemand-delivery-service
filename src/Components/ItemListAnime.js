@@ -1,46 +1,38 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   Alert,
+  Animated,
   Dimensions,
+  FlatList,
   Image,
   ImageBackground,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import { Colours } from "./Colours";
-import { Layout } from "./Layout";
-import demoimage from "./../assets/demo.png";
+import { Colours } from "../Constants/Colours";
+import { Layout } from "../Constants/Layout";
+import demoimage from "./../../assets/demo.png";
+import * as Animatable from "react-native-animatable";
+import DATA from "../DATA";
 
-function ItemList() {
-  const [todos, setTodos] = React.useState([
-    {
-      title: "French Burgerddd fff",
-      description: "2 veg burgers with sause",
-      image: "",
-      cost: 220,
-      quantity: 0,
-      incart: false,
+function ItemListAnime({ items }) {
+  const [todos, setTodos] = React.useState(items);
+
+  const fadeIn = {
+    from: {
+      opacity: 0,
     },
-    {
-      title: "Cheese Burger",
-      description: "2 veg burgers with extra cheese and mayonese ",
-      cost: 220,
-      quantity: 0,
-      incart: false,
+    to: {
+      opacity: 1,
     },
-    {
-      title: "Potato Fries",
-      description: "2 veg burgers with sause",
-      cost: 220,
-      quantity: 0,
-      incart: false,
-    },
-  ]);
+  };
 
   const incrementQuantity = (index) => {
     const newTodos = [...todos];
-    if (newTodos[index].incart == 0) newTodos[index].incart = true;
+    if (newTodos[index].incart == 0) {
+      newTodos[index].incart = true;
+    }
     newTodos[index].quantity = newTodos[index].quantity + 1;
 
     setTodos(newTodos);
@@ -51,7 +43,10 @@ function ItemList() {
     const currentQuantity = newTodos[index].quantity;
     if (currentQuantity != 0) {
       newTodos[index].quantity = currentQuantity - 1;
-      if (currentQuantity == 1) newTodos[index].incart = false;
+
+      if (currentQuantity == 1) {
+        newTodos[index].incart = false;
+      }
 
       setTodos(newTodos);
     }
@@ -61,18 +56,34 @@ function ItemList() {
     return (
       <View style={styles.card}>
         <Image
-          style={{ ...styles.image, opacity: item.incart ? 0.3 : 1 }}
+          style={{
+            ...styles.image,
+            opacity: item.incart ? 0.2 : 1,
+          }}
           source={demoimage}
         ></Image>
+
         <View
           style={{ width: 180, justifyContent: "center", alignItems: "center" }}
         >
           {item.incart ? (
             <>
-              <Text style={{ ...styles.largeQuantity, opacity: 1 }}>
+              <Animatable.Text
+                animation="zoomIn"
+                easing="ease-out"
+                iterationCount={1}
+                style={{
+                  ...styles.largeQuantity,
+                  opacity: 1,
+                  color: Colours.darkforestgreen,
+                }}
+              >
                 x {item.quantity}
+              </Animatable.Text>
+              <Text style={{ fontSize: 20, color: Colours.darkforestgreen }}>
+                {" "}
+                in cart
               </Text>
-              <Text style={{ fontSize: 20 }}> in cart</Text>
             </>
           ) : (
             <></>
@@ -108,9 +119,22 @@ function ItemList() {
 
   return (
     <View>
-      {todos.map((item, index) => (
-        <ItemList key={index} index={index} item={item} />
-      ))}
+      <Text
+        style={{
+          padding: 10,
+          fontSize: 20,
+          fontWeight: "600",
+          color: Colours.darkforestgreen,
+        }}
+      >
+        Most Ordered
+      </Text>
+
+      <FlatList
+        data={todos}
+        renderItem={ItemList}
+        keyExtractor={(item, index) => item.index}
+      />
     </View>
   );
 }
@@ -120,9 +144,9 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   title: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "600",
-    width: Layout.width - 210,
+    width: Layout.width - 200,
     color: Colours.darkforestgreen,
   },
   description: {
@@ -134,23 +158,28 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   image: {
-    height: 180,
-    width: 180,
+    height: 160,
+    width: 160,
     justifyContent: "center",
     position: "absolute",
   },
   card: {
     flexDirection: "row",
-    backgroundColor: Colours.offwhite,
-    marginBottom: Layout.marginMedium,
+    backgroundColor: Colours.white,
+    marginBottom: Layout.marginSmall,
     paddingRight: Layout.paddingMedium,
+    marginLeft: Layout.paddingSmall,
     width: Layout.width - 20,
-    height: 180,
+    height: 160,
+    borderBottomColor: Colours.offwhite,
+    borderBottomWidth: 1,
+    borderTopColor: Colours.offwhite,
+    borderTopWidth: 1,
   },
   horizontalContainer: {
     flexDirection: "column",
     justifyContent: "space-around",
-    paddingLeft: 10,
+    paddingLeft: 0,
   },
   quantityBox: {
     backgroundColor: "white",
@@ -160,4 +189,4 @@ const styles = StyleSheet.create({
     width: 120,
   },
 });
-export default ItemList;
+export default ItemListAnime;

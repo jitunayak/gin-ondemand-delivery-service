@@ -16,4 +16,6 @@ export const Colours = {
   orange: "#FE5D54",
   darkforestgreen: "#11333C",
   lightforestgreen: "#A09EA2",
+  gold: "#FFCD01",
+  humingbird: "#F2F2F2",
 };
