@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   Alert,
   Animated,
@@ -15,18 +15,15 @@ import { Layout } from "../Constants/Layout";
 import demoimage from "./../../assets/demo.png";
 import * as Animatable from "react-native-animatable";
 import DATA from "../DATA";
+import { Icon } from "react-native-elements";
 
 function ItemListAnime({ items }) {
   const [todos, setTodos] = React.useState(items);
 
-  const fadeIn = {
-    from: {
-      opacity: 0,
-    },
-    to: {
-      opacity: 1,
-    },
-  };
+  useEffect(() => {
+    setTodos(items);
+    return () => {};
+  }, [items]);
 
   const incrementQuantity = (index) => {
     const newTodos = [...todos];
@@ -98,19 +95,32 @@ function ItemListAnime({ items }) {
           </Text>
           <Text style={styles.cost}>₹ {item.cost}</Text>
           <View style={styles.quantityBox}>
-            <Text
-              style={{ opacity: item.incart ? 1 : 0, fontSize: 16 }}
+            <Icon
+              name="trash-outline"
+              type="ionicon"
+              color="#f50"
+              size={32}
+              style={{ opacity: item.incart ? 1 : 0 }}
               onPress={() => decrementQuantity(index)}
-            >
-              REM
-            </Text>
-            <Text>{item.quantity}</Text>
+            />
             <Text
-              style={{ fontSize: 16 }}
-              onPress={() => incrementQuantity(index)}
+              style={{
+                fontWeight: "600",
+                fontSize: 18,
+                padding: 6,
+                textAlign: "center",
+                opacity: item.incart ? 1 : 0,
+              }}
             >
-              ADD
+              {item.quantity}
             </Text>
+            <Icon
+              name="add-circle"
+              type="ionicon"
+              size={35}
+              color={Colours.accentcolor}
+              onPress={() => incrementQuantity(index)}
+            />
           </View>
         </View>
       </View>
@@ -133,7 +143,12 @@ function ItemListAnime({ items }) {
       <FlatList
         data={todos}
         renderItem={ItemList}
-        keyExtractor={(item, index) => item.index}
+        keyExtractor={(item, index) => index.toString()}
+        ListEmptyComponent={
+          <Text style={[styles.title, { textAlign: "center" }]}>
+            No matches found
+          </Text>
+        }
       />
     </View>
   );
@@ -141,7 +156,7 @@ function ItemListAnime({ items }) {
 
 const styles = StyleSheet.create({
   largeQuantity: {
-    fontSize: 50,
+    fontSize: 40,
   },
   title: {
     fontSize: 20,
@@ -151,7 +166,7 @@ const styles = StyleSheet.create({
   },
   description: {
     width: Layout.width - 210,
-    fontWeight: "500",
+    fontWeight: "400",
     color: Colours.lightforestgreen,
   },
   cost: {
@@ -185,8 +200,11 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     padding: Layout.paddingSmall,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     width: 120,
+    position: "absolute",
+    right: 0,
+    bottom: 0,
   },
 });
 export default ItemListAnime;

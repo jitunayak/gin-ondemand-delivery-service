@@ -9,6 +9,8 @@ import DATA from "./DATA";
 import { Layout } from "./Constants/Layout";
 import { Colours } from "./Constants/Colours";
 import HomeScreen from "./Screens/HomeScreen";
+import OrdersPage from "./Screens/OrdersPage";
+import LocationPage from "./Screens/LocationPage";
 
 const Stack = createStackNavigator();
 
@@ -28,6 +30,8 @@ function HomeNavigator() {
         <Stack.Navigator>
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={MenuList} />
+          <Stack.Screen name="Order" component={OrdersPage} />
+          <Stack.Screen name="Location" component={LocationPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

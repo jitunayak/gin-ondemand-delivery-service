@@ -70,11 +70,11 @@ const PrimaryList = ({ list, navigation }) => {
         Top Rated
       </Text>
       <FlatList
-        horizontal
+        horizontal={true}
         showsHorizontalScrollIndicator={false}
         data={list}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );

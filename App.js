@@ -19,12 +19,13 @@ import ItemListLongCards from "./src/Components/ItemListLongCards";
 import MenuList from "./src/Screens/MenuList";
 import DATA from "./src/DATA";
 import HomeNavigator from "./src/HomeNavigator";
+import SplashScreen from "./src/Screens/SplashScreen";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <HomeNavigator />
+        <SplashScreen />
       </SafeAreaView>
     </View>
   );
@@ -36,6 +37,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
-    marginTop: 20,
+    marginTop: 0,
   },
 });

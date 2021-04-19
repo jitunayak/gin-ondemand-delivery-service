@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,43 +12,81 @@ import { Colours } from "../Constants/Colours";
 import DATA from "../DATA";
 import ItemListAnime from "../Components/ItemListAnime";
 import { Layout } from "../Constants/Layout";
+import { SearchBar } from "react-native-elements";
 
-const ShowAlrt = () => {
-  Alert.alert("Searching..");
-};
-
-const Header = ({ headerDetails }) => {
-  return (
-    <View style={styles.HeaderContainer}>
-      <TextInput
-        style={styles.searchbar}
-        onKeyPress={ShowAlrt}
-        placeholder="Search the menu.."
-      />
-      <Text style={styles.title}>{headerDetails.name}</Text>
-      <Text style={styles.desciption}>{headerDetails.description}</Text>
-      <Text style={styles.rating}>{headerDetails.rating}</Text>
-      <Text style={styles.location}>Location : {headerDetails.location}</Text>
-    </View>
-  );
-};
 function MenuList({ route, navigation }) {
   const { items } = route.params;
-  console.log("called...");
+
+  const [allitems, setallitems] = useState(items.items);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const ShowAlrt = () => {
+    setSearching(true);
+  };
+
+  useEffect(() => {
+    const filtereditems = items.items.filter((item) =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setallitems(filtereditems);
+    return () => {};
+  }, [searchTerm]);
+
+  const Searchbar = ({ items }) => {
+    return (
+      <>
+        <TextInput
+          style={styles.searchbar}
+          onFocus={ShowAlrt}
+          clearButtonMode={"while-editing"}
+          autoFocus={searching}
+          onSubmitEditing={() => setSearching(false)}
+          placeholder="Search the menu.."
+          value={searchTerm}
+          onChangeText={setSearchTerm}
+        />
+        {searching ? <></> : <Header headerDetails={items} />}
+      </>
+    );
+  };
+  const Header = ({ headerDetails }) => {
+    return (
+      <>
+        <View style={styles.HeaderContainer}>
+          <Text style={styles.title}>{headerDetails.name}</Text>
+          <Text style={styles.desciption}>{headerDetails.description}</Text>
+          <Text style={styles.rating}>{headerDetails.rating}</Text>
+          <Text style={{ color: Colours.lightforestgreen }}>
+            Location :{" "}
+            <Text style={styles.location}> {headerDetails.location}</Text>
+          </Text>
+        </View>
+        <View
+          style={{
+            borderBottomColor: Colours.offwhite,
+            borderBottomWidth: 2,
+            marginLeft: 20,
+            marginRight: 20,
+            marginBottom: 10,
+            marginTop: 0,
+          }}
+        />
+      </>
+    );
+  };
+
+  const [searching, setSearching] = useState(false);
+
   return (
-    <ScrollView>
-      <Header headerDetails={items} />
-      <ItemListAnime items={items.items} />
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <Searchbar items={items} />
+      <ItemListAnime items={allitems} />
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 100,
-  },
   HeaderContainer: {
-    height: 260,
     width: Layout.width - 20,
     padding: 20,
   },
@@ -56,12 +94,12 @@ const styles = StyleSheet.create({
     fontSize: 26,
     fontWeight: "600",
     color: Colours.darkforestgreen,
-    marginTop: 20,
     marginBottom: 10,
   },
   desciption: {
     color: Colours.lightforestgreen,
     width: Layout.width - 100,
+    fontSize: 16,
   },
   rating: {
     fontSize: 40,
@@ -71,8 +109,10 @@ const styles = StyleSheet.create({
   searchbar: {
     backgroundColor: Colours.offwhite,
     padding: Layout.paddingSmall,
+    margin: 10,
     fontSize: 18,
     borderRadius: 10,
+    width: Layout.width - 20,
   },
   location: {
     color: Colours.darkforestgreen,

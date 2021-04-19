@@ -8,6 +8,7 @@ const DATA = [
     location: "Acharya Vihar",
     items: [
       {
+        id: "0",
         title: "French Burger",
         description: "2 veg burgers with sause",
         image: "",
@@ -16,6 +17,25 @@ const DATA = [
         incart: false,
       },
       {
+        id: "1",
+        title: "Mushroom Thali",
+        description: "Pure Veg thali with mushroom and sabji,rice",
+        image: "",
+        cost: 180,
+        quantity: 0,
+        incart: false,
+      },
+      {
+        id: "2",
+        title: "French Burger",
+        description: "2 veg burgers with sause",
+        image: "",
+        cost: 130,
+        quantity: 0,
+        incart: false,
+      },
+      {
+        id: "3",
         title: "Mushroom Thali",
         description: "Pure Veg thali with mushroom and sabji,rice",
         image: "",
@@ -34,6 +54,7 @@ const DATA = [
     location: "Acharya Vihar",
     items: [
       {
+        id: "0",
         title: "French Burger",
         description: "2 veg burgers with sause",
         image: "",
@@ -42,6 +63,25 @@ const DATA = [
         incart: false,
       },
       {
+        id: "1",
+        title: "Mushroom Thali",
+        description: "Pure Veg thali with mushroom and sabji,rice",
+        image: "",
+        cost: 180,
+        quantity: 0,
+        incart: false,
+      },
+      {
+        id: "2",
+        title: "French Burger",
+        description: "2 veg burgers with sause",
+        image: "",
+        cost: 130,
+        quantity: 0,
+        incart: false,
+      },
+      {
+        id: "3",
         title: "Mushroom Thali",
         description: "Pure Veg thali with mushroom and sabji,rice",
         image: "",

@@ -53,7 +53,7 @@ const ItemListLongCards = ({ list, navigation }) => {
         showsHorizontalScrollIndicator={false}
         data={list}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item, index) => index.toString()}
       />
     </View>
   );
