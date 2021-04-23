@@ -9,6 +9,8 @@ export const Colours = {
   tabbar: "#5E55B5",
   green: "#26A65B",
   accentcolor: "#5E55B5",
+  lightaccentcolor: "#F2F1FF",
+  darkaccentcolor: "#181765",
   logintext: "#2A2A2F",
   glogobg: "white",
   glogotext: "#2A2A2F",

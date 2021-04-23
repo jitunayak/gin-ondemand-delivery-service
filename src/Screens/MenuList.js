@@ -13,6 +13,9 @@ import DATA from "../DATA";
 import ItemListAnime from "../Components/ItemListAnime";
 import { Layout } from "../Constants/Layout";
 import { SearchBar } from "react-native-elements";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { FloatingAction } from "react-native-floating-action";
+import SnackBar from "react-native-snackbar-component";
 
 function MenuList({ route, navigation }) {
   const { items } = route.params;
@@ -35,6 +38,8 @@ function MenuList({ route, navigation }) {
   const Searchbar = ({ items }) => {
     return (
       <>
+        {searching ? <></> : <Header headerDetails={items} />}
+
         <TextInput
           style={styles.searchbar}
           onFocus={ShowAlrt}
@@ -45,7 +50,6 @@ function MenuList({ route, navigation }) {
           value={searchTerm}
           onChangeText={setSearchTerm}
         />
-        {searching ? <></> : <Header headerDetails={items} />}
       </>
     );
   };
@@ -78,14 +82,41 @@ function MenuList({ route, navigation }) {
   const [searching, setSearching] = useState(false);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <Searchbar items={items} />
-      <ItemListAnime items={allitems} />
-    </ScrollView>
+    <>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Searchbar items={items} />
+        <ItemListAnime items={allitems} />
+      </ScrollView>
+      <SnackBar
+        useNativeDriver={true}
+        bottom={20}
+        right={20}
+        left={20}
+        visible={!searching}
+        messageColor={Colours.white}
+        accentColor={Colours.white}
+        containerStyle={styles.SnackBar}
+        textMessage="Added...."
+        actionHandler={() => {
+          navigation.push("Order", {
+            items: allitems.filter((item) => item.quantity >= 1),
+          });
+        }}
+        actionText="Go to CART"
+      />
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+  messageStyle: {
+    fontSize: 20,
+    color: Colours.accentcolor,
+  },
+  SnackBar: {
+    height: 50,
+    borderRadius: 10,
+  },
   HeaderContainer: {
     width: Layout.width - 20,
     padding: 20,
@@ -113,6 +144,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     borderRadius: 10,
     width: Layout.width - 20,
+    fontWeight: "600",
   },
   location: {
     color: Colours.darkforestgreen,

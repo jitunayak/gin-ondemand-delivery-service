@@ -27,11 +27,15 @@ function HomeNavigator() {
   return (
     <View style={styles.container}>
       <NavigationContainer theme={MyTheme}>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={MenuList} />
-          <Stack.Screen name="Order" component={OrdersPage} />
           <Stack.Screen name="Location" component={LocationPage} />
+          <Stack.Screen name="Order" component={OrdersPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

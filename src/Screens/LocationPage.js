@@ -8,6 +8,7 @@ import {
   CameraRoll,
   TextInput,
   ActivityIndicator,
+  KeyboardAvoidingView,
 } from "react-native";
 import * as Location from "expo-location";
 import MapView, {
@@ -19,7 +20,7 @@ import MapView, {
 import { Layout } from "../Constants/Layout";
 import { Colours } from "../Constants/Colours";
 import { Button } from "react-native-elements";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { Icon } from "react-native-elements";
 import LottieView from "lottie-react-native";
 import lottie4 from "./../../assets/1342-location.json";
 
@@ -84,14 +85,63 @@ export default function LocationPage() {
       longitude: longitude,
     });
   };
+
+  const SelectSavedLocation = () => {
+    return (
+      <View>
+        <View
+          style={{
+            backgroundColor: Colours.lightaccentcolor,
+            width: 180,
+            padding: 10,
+            height: 100,
+            borderRadius: 10,
+            margin: 10,
+          }}
+        >
+          <Text
+            style={{
+              fontWeight: "600",
+              fontSize: 20,
+              color: Colours.darkaccentcolor,
+            }}
+          >
+            Sagar's Home
+          </Text>
+          <Text style={{ marginTop: 10 }}>Manisha Manorama Apartment</Text>
+        </View>
+      </View>
+    );
+  };
   return (
     <View style={styles.container}>
+      <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <Text
+          style={{
+            fontSize: 26,
+            fontWeight: "600",
+            padding: 20,
+            justifyContent: "flex-start",
+          }}
+        >
+          Address
+        </Text>
+        <Icon
+          name="navigate-circle-outline"
+          type="ionicon"
+          size={30}
+          color={Colours.accentcolor}
+          onPress={() => incrementQuantity(index)}
+        />
+      </View>
+
       {fetched ? (
         <>
           <MapView
             maxZoomLevel={16}
-            provider={PROVIDER_GOOGLE}
+            // provider={PROVIDER_GOOGLE}
             style={styles.mapview}
+            minZoomLevel={15}
             region={region}
             onRegionChangeComplete={(region) => ChangeRegion(region)}
           >
@@ -119,27 +169,39 @@ export default function LocationPage() {
         </>
       )}
 
-      <TextInput style={styles.inputbox} placeholder="Street" />
-      <TextInput style={styles.inputbox} placeholder="Local area" />
-      <TextInput
-        style={styles.inputbox}
-        value={localAddress}
-        editable={false}
-      />
-
+      <View
+        style={{
+          backgroundColor: Colours.lightaccentcolor,
+          padding: 10,
+          borderRadius: 10,
+          margin: 10,
+        }}
+      >
+        <TextInput style={styles.inputbox} placeholder="Street" />
+        <TextInput style={styles.inputbox} placeholder="Local area" />
+        <TextInput
+          style={styles.inputbox}
+          value={localAddress}
+          editable={false}
+        />
+      </View>
       <Button
-        title="Deliver here"
+        title="Save Address"
         loading={!fetched}
-        buttonStyle={{ backgroundColor: Colours.accentcolor, height: 50 }}
-        icon={
-          <Icon
-            name="location-arrow"
-            size={15}
-            style={{ paddingRight: 10 }}
-            color="white"
-          />
-        }
+        buttonStyle={{
+          backgroundColor: Colours.accentcolor,
+          height: 50,
+          borderRadius: 10,
+          margin: 10,
+        }}
       />
+      <Text style={{ fontWeight: "500", fontSize: 20, padding: 10 }}>
+        Saved locations
+      </Text>
+      <View style={{ flexDirection: "row" }}>
+        <SelectSavedLocation />
+        <SelectSavedLocation />
+      </View>
     </View>
   );
 }
@@ -152,15 +214,17 @@ const styles = StyleSheet.create({
   },
   mapview: {
     height: 200,
+    borderRadius: 30,
+    margin: 10,
   },
   inputbox: {
-    width: Layout.width - 30,
+    width: Layout.width - 60,
     padding: Layout.paddingSmall,
-    backgroundColor: Colours.white,
+    backgroundColor: Colours.lightaccentcolor,
     fontSize: 20,
     margin: 5,
     borderBottomWidth: 2,
-    borderBottomColor: Colours.offwhite,
+    borderBottomColor: Colours.white,
     color: Colours.darkforestgreen,
   },
 });

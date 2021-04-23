@@ -5336,6 +5336,11 @@ react-native-elements@^3.3.2:
     react-native-ratings "^7.3.0"
     react-native-size-matters "^0.3.1"
 
+react-native-floating-action@^1.21.0:
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/react-native-floating-action/-/react-native-floating-action-1.21.0.tgz#cb1e8349fec5b9aed06c8053c07372822c64b22f"
+  integrity sha512-ozd/iaJunrEYc4eGUWkP+4UI8yoIL0nQsToI3hnJRste/3LPhBkyu0eG3RTjc6aFY+q++JpRmgO469Ck8jJOwg==
+
 react-native-gesture-handler@~1.10.2:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.10.3.tgz#942bbf2963bbf49fa79593600ee9d7b5dab3cfc0"
@@ -5396,6 +5401,13 @@ react-native-size-matters@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/react-native-size-matters/-/react-native-size-matters-0.3.1.tgz#24d0cfc335a2c730f6d58bd7b43ea5a41be4b49f"
   integrity sha512-mKOfBLIBFBcs9br1rlZDvxD5+mAl8Gfr5CounwJtxI6Z82rGrMO+Kgl9EIg3RMVf3G855a85YVqHJL2f5EDRlw==
+
+react-native-snackbar-component@^1.1.11:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/react-native-snackbar-component/-/react-native-snackbar-component-1.1.11.tgz#58df1c49f6cf01c5197db1bbf527746cdd1216e0"
+  integrity sha512-DtSg1Bh2FO3B48CIKd2hMsAk3rO8M6bStf76+KY/KW4By+E+/lPO5Mv6zbX7WS/miohtl+yg3OKYne9U4aqKMg==
+  dependencies:
+    prop-types "^15.6.0"
 
 react-native-web@~0.13.12:
   version "0.13.18"

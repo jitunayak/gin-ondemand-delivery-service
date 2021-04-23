@@ -16,6 +16,12 @@ import demoimage from "./../../assets/demo.png";
 import * as Animatable from "react-native-animatable";
 import DATA from "../DATA";
 import { Icon } from "react-native-elements";
+import {
+  TouchableHighlight,
+  TouchableOpacity,
+} from "react-native-gesture-handler";
+import { FloatingAction } from "react-native-floating-action";
+import SnackBar from "react-native-snackbar-component";
 
 function ItemListAnime({ items }) {
   const [todos, setTodos] = React.useState(items);
@@ -128,7 +134,7 @@ function ItemListAnime({ items }) {
   }
 
   return (
-    <View>
+    <View style={{ marginBottom: 100 }}>
       <Text
         style={{
           padding: 10,
@@ -155,6 +161,24 @@ function ItemListAnime({ items }) {
 }
 
 const styles = StyleSheet.create({
+  button: {
+    backgroundColor: Colours.accentcolor,
+    paddingTop: 14,
+    paddingBottom: 14,
+    margin: 10,
+    borderRadius: 8,
+    bottom: 0,
+    position: "absolute",
+    width: Layout.width - 20,
+    marginBottom: 20,
+    flex: 1,
+  },
+  btn_text: {
+    fontSize: 20,
+    color: Colours.white,
+    textAlign: "center",
+    flex: 1,
+  },
   largeQuantity: {
     fontSize: 40,
   },
