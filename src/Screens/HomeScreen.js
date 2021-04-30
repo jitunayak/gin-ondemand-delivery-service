@@ -7,6 +7,7 @@ import { Colours } from "../Constants/Colours";
 import DATA from "../DATA";
 import { Icon, Avatar } from "react-native-elements";
 import userdemo from "./../../assets/userdemo.jpg";
+import CarousalHome from "../Components/CarousalHome";
 
 function HomeScreen({ navigation }) {
   useEffect(() => {
@@ -50,14 +51,7 @@ function HomeScreen({ navigation }) {
           />
         </View>
 
-        <View
-          style={{
-            backgroundColor: Colours.darkforestgreen,
-            height: 200,
-            margin: 10,
-            borderRadius: 10,
-          }}
-        ></View>
+        <CarousalHome />
 
         <PrimaryList list={DATA} navigation={navigation} />
         <ItemListLongCards list={DATA} navigation={navigation} />

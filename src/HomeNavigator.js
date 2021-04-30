@@ -14,6 +14,7 @@ import LocationPage from "./Screens/LocationPage";
 import OrderTrackerPage from "./Screens/OrderTrackerPage";
 import BlurViewDemo from "./Screens/BlurViewDemo";
 import BottomNavigation from "./BottomNavigation";
+import CarousalHome from "./Components/CarousalHome";
 
 const Stack = createStackNavigator();
 
@@ -35,6 +36,7 @@ function HomeNavigator() {
             headerShown: false,
           }}
         >
+          {/* <Stack.Screen name="carousal" component={CarousalHome} /> */}
           <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={MenuList} />
