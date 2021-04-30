@@ -13,6 +13,7 @@ import OrdersPage from "./Screens/OrdersPage";
 import LocationPage from "./Screens/LocationPage";
 import OrderTrackerPage from "./Screens/OrderTrackerPage";
 import BlurViewDemo from "./Screens/BlurViewDemo";
+import BottomNavigation from "./BottomNavigation";
 
 const Stack = createStackNavigator();
 
@@ -34,7 +35,7 @@ function HomeNavigator() {
             headerShown: false,
           }}
         >
-          {/* <Stack.Screen name="blur" component={BlurViewDemo} /> */}
+          <Stack.Screen name="BottomNavigation" component={BottomNavigation} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={MenuList} />
           <Stack.Screen name="Location" component={LocationPage} />

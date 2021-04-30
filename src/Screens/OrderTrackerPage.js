@@ -127,14 +127,14 @@ function OrderTrackerPage() {
 
 const styles = StyleSheet.create({
   mapview: {
-    height: Layout.height,
+    height: Layout.height - 40,
   },
   container: {
-    height: 220,
+    height: 200,
     backgroundColor: Colours.blacklight,
     justifyContent: "space-between",
-    borderRadius: 30,
-    margin: 6,
+    borderRadius: 20,
+    margin: 10,
     padding: 10,
     position: "absolute",
     bottom: 0,
@@ -154,12 +154,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   subcontainer: {
-    margin: 10,
-    padding: 20,
-    backgroundColor: Colours.lightaccentcolor,
+    margin: 6,
+    padding: 16,
+    backgroundColor: Colours.white,
     flexDirection: "row",
     justifyContent: "space-between",
-    borderRadius: 20,
+    borderRadius: 10,
   },
   horizontalContainer: {
     flexDirection: "row",
