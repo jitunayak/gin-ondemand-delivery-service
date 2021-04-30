@@ -1,21 +1,11 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  Button,
-  TextInput,
-  StyleSheet,
-  ScrollView,
-  Alert,
-} from "react-native";
+import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
+import SnackBar from "react-native-snackbar-component";
 import { Colours } from "../Constants/Colours";
 import DATA from "../DATA";
 import ItemListAnime from "../Components/ItemListAnime";
 import { Layout } from "../Constants/Layout";
-import { SearchBar } from "react-native-elements";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { FloatingAction } from "react-native-floating-action";
-import SnackBar from "react-native-snackbar-component";
+import { Icon } from "react-native-elements";
 
 function MenuList({ route, navigation }) {
   const { items } = route.params;
@@ -39,17 +29,37 @@ function MenuList({ route, navigation }) {
     return (
       <>
         {searching ? <></> : <Header headerDetails={items} />}
+        <View
+          style={[
+            styles.searchIcon,
+            {
+              flexDirection: "row",
+              alignItems: "center",
+              backgroundColor: Colours.offwhite,
+              margin: 20,
+              borderRadius: 10,
+            },
+          ]}
+        >
+          <Icon
+            type="ionicon"
+            style={{ padding: 10 }}
+            name="ios-search"
+            size={20}
+            color={Colours.lightforestgreen}
+          />
 
-        <TextInput
-          style={styles.searchbar}
-          onFocus={ShowAlrt}
-          clearButtonMode={"while-editing"}
-          autoFocus={searching}
-          onSubmitEditing={() => setSearching(false)}
-          placeholder="Search the menu.."
-          value={searchTerm}
-          onChangeText={setSearchTerm}
-        />
+          <TextInput
+            style={styles.searchbar}
+            onFocus={ShowAlrt}
+            clearButtonMode={"while-editing"}
+            autoFocus={searching}
+            onSubmitEditing={() => setSearching(false)}
+            placeholder="Search the menu.."
+            value={searchTerm}
+            onChangeText={setSearchTerm}
+          />
+        </View>
       </>
     );
   };
@@ -96,6 +106,7 @@ function MenuList({ route, navigation }) {
         messageColor={Colours.white}
         accentColor={Colours.white}
         containerStyle={styles.SnackBar}
+        backgroundColor={Colours.blacklight}
         textMessage="Added...."
         actionHandler={() => {
           navigation.push("Order", {
@@ -116,15 +127,16 @@ const styles = StyleSheet.create({
   SnackBar: {
     height: 50,
     borderRadius: 10,
+    width: 120,
   },
   HeaderContainer: {
-    width: Layout.width - 20,
-    padding: 20,
+    width: Layout.width,
+    padding: 22,
   },
   title: {
     fontSize: 26,
     fontWeight: "600",
-    color: Colours.darkforestgreen,
+    color: Colours.blacklight,
     marginBottom: 10,
   },
   desciption: {
@@ -140,10 +152,10 @@ const styles = StyleSheet.create({
   searchbar: {
     backgroundColor: Colours.offwhite,
     padding: Layout.paddingSmall,
-    margin: 10,
+    margin: 4,
     fontSize: 18,
     borderRadius: 10,
-    width: Layout.width - 20,
+    width: Layout.width - 100,
     fontWeight: "600",
   },
   location: {

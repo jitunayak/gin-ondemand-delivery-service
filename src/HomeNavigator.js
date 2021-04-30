@@ -11,6 +11,8 @@ import { Colours } from "./Constants/Colours";
 import HomeScreen from "./Screens/HomeScreen";
 import OrdersPage from "./Screens/OrdersPage";
 import LocationPage from "./Screens/LocationPage";
+import OrderTrackerPage from "./Screens/OrderTrackerPage";
+import BlurViewDemo from "./Screens/BlurViewDemo";
 
 const Stack = createStackNavigator();
 
@@ -32,10 +34,12 @@ function HomeNavigator() {
             headerShown: false,
           }}
         >
+          {/* <Stack.Screen name="blur" component={BlurViewDemo} /> */}
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Details" component={MenuList} />
           <Stack.Screen name="Location" component={LocationPage} />
           <Stack.Screen name="Order" component={OrdersPage} />
+          <Stack.Screen name="OrderTracker" component={OrderTrackerPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

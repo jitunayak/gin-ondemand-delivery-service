@@ -67,7 +67,12 @@ function ItemListAnime({ items }) {
         ></Image>
 
         <View
-          style={{ width: 180, justifyContent: "center", alignItems: "center" }}
+          style={{
+            width: 140,
+            justifyContent: "center",
+            alignItems: "center",
+            marginRight: 40,
+          }}
         >
           {item.incart ? (
             <>
@@ -180,10 +185,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   largeQuantity: {
-    fontSize: 40,
+    fontSize: 36,
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "600",
     width: Layout.width - 200,
     color: Colours.darkforestgreen,
@@ -197,8 +202,8 @@ const styles = StyleSheet.create({
     fontWeight: "600",
   },
   image: {
-    height: 160,
-    width: 160,
+    height: 140,
+    width: 140,
     justifyContent: "center",
     position: "absolute",
   },
@@ -209,7 +214,7 @@ const styles = StyleSheet.create({
     paddingRight: Layout.paddingMedium,
     marginLeft: Layout.paddingSmall,
     width: Layout.width - 20,
-    height: 160,
+    height: 140,
     borderBottomColor: Colours.offwhite,
     borderBottomWidth: 1,
     borderTopColor: Colours.offwhite,

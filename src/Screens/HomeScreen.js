@@ -1,13 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  View,
-  ScrollView,
-  Text,
-  Image,
-  StatusBar,
-  LogBox,
-  Alert,
-} from "react-native";
+import { View, ScrollView, Text, StatusBar, LogBox, Alert } from "react-native";
 import ItemListAnime from "../Components/ItemListAnime";
 import ItemListLongCards from "../Components/ItemListLongCards";
 import PrimaryList from "../Components/PrimaryList";

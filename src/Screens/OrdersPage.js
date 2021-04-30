@@ -16,7 +16,7 @@ function OrdersPage({ route, navigation }) {
 
   useEffect(() => {
     let final = 0;
-    allitems.map((item, index) => {
+    allitems.map((item) => {
       let amount = item.quantity * item.cost;
       final = amount + final;
     });
@@ -97,7 +97,10 @@ function OrdersPage({ route, navigation }) {
         </View>
 
         <View style={{ flex: 1 }}>
-          <TouchableOpacity style={styles.button} onPress={MakeVibration}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.push("OrderTracker")}
+          >
             <Text style={styles.btn_text}>Place Order</Text>
           </TouchableOpacity>
         </View>
